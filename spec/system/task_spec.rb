@@ -56,6 +56,8 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task編集' do
+    let(:update_task) { Task.first }
+
     context '正常系' do
       it 'Taskを編集した場合、一覧画面で編集後の内容が表示されること' do
         # FIXME: テストが失敗するので修正してください
@@ -63,7 +65,6 @@ RSpec.describe 'Task', type: :system do
         fill_in 'Deadline', with: Time.current
         click_button 'Update Task'
         click_link 'Back'
-        update_task = Task.first
         expect(find('.task_list')).to have_content short_time(update_task.deadline)
         expect(current_path).to eq project_tasks_path(task.project)
       end
