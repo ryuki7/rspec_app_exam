@@ -100,7 +100,7 @@ RSpec.describe 'Task', type: :system do
         click_link 'Destroy'
         expect(page.accept_confirm).to eq 'Are you sure?'
         expect(page).to have_content 'Task was successfully destroyed.'
-        expect(page).not_to have_content short_time(destroy_task.deadline)
+        expect(find('.task_list')).not_to have_content destroy_task.title
         expect(Task.count).to eq 0
         expect(current_path).to eq project_tasks_path(destroy_task.project)
       end
