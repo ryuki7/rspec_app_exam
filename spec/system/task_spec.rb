@@ -63,7 +63,7 @@ RSpec.describe 'Task', type: :system do
         fill_in 'Deadline', with: Time.current
         click_button 'Update Task'
         click_link 'Back'
-        expect(find('.task_list')).to have_content short_time(Task.first.deadline)
+        expect(find('.task_list')).to have_content short_time(task.reload.deadline)
         expect(current_path).to eq project_tasks_path(task.project)
       end
 
